@@ -1,48 +1,78 @@
-Heart Disease Prediction Analysis Project (Data Science Project)!
-
-Okay, let's create the `README.md` file to document our project.
-
-```markdown
 # Heart Disease Prediction Project
 
-This project performs Exploratory Data Analysis (EDA) on a heart disease dataset and trains a simple Logistic Regression model to predict the presence of heart disease.
+This Python-based data science project analyses a heart disease dataset and trains a Logistic Regression model to predict the presence of heart disease, using data preprocessing, Exploratory Data Analysis (EDA), and machine learning. The code is structured for use in vscode and consists of modular .py script files.
+
+---
+
+## Objective
+
+Explore and model the "Heart Disease UCI" dataset to identify key features affecting patients' health conditions and build a machine learning model for prediction. 
+
+---
 
 ## Dataset
 
-The dataset used is the "Heart Disease UCI" dataset, which can be found on Kaggle (you will need to download `heart.csv` and place it in the same directory as the Python script). It contains various features related to patients' health conditions and a binary target variable indicating the presence or absence of heart disease.
+The dataset used is the "Heart Disease UCI" dataset, which can be found on Kaggle (you will need to download `heart.csv` and place it in the same directory as the Python script). It contains various features related to patients' health conditions and a binary target variable indicating the presence or absence of heart disease. It is used to to explore data cleaning, visualization, and machine learning for survival prediction.
+
+---
 
 ## Project Structure
 
-```
-.
-├── main.py           # Main Python script for data analysis and modeling
-├── heart.csv         # The dataset (download from Kaggle)
-├── README.md         # Project documentation
-├── requirements.txt  # List of Python dependencies
-└── eda_*.png         # Generated EDA visualizations
-
 heart_disease_project/
-├── main.py
-├── heart.csv        <-- You will place your downloaded file here
+├── src
+    └── data/     : Stores heart disease dataset in CSV file format
+        └── heart.cvs : Heart disease dataset
+    └── figures/  : Stores images     
+    └── models/   : Strores models   
+    └── data_loader.py: For data loading and preprocessing.
+    └── eda.py: For Exploratory Data Analysis.
+    └── main.py: The main script to orchestrate the execution.
+    └── model_trainer.py: For model training.
+├── .gitignore    : Project documentation
+├── Heart_Disease_Prediction_Presentation.pptx
+├── LICENCE
 ├── README.md
-├── requirements.txt
-└── (EDA images will be generated here when you run main.py)
+└── requirements.txt : List of Python dependencies  
 
+---
 
+## Technologies Used: 
+
+- Python 3.8+
+- pandas, numpy
+- seaborn, matplotlib
+- scikit-learn, joblib
+- powerpoint
+- csv file
+- vscode
+
+---
+
+## Setup Instructions
+
+1. **Clone the repository**
 
 ```
+https://github.com/AAdewunmi/Heart-Disease-Prediction-Analysis-Project.git
+```
 
-## Getting Started
+2. **Create a virtual environment (macOS/Linux)**
 
-1.  **Download the dataset:** Obtain the `heart.csv` file from Kaggle and place it in the same directory as the `main.py` script.
-2.  **Install dependencies:** Run the following command to install the necessary Python libraries:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  **Run the script:** Execute the main Python script:
-    ```bash
-    python main.py
-    ```
+```bash
+# Set up virtual environment
+python3 -m venv venv
+source venv/bin/activate    # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run scripts
+python data_loader.py
+python eda.py
+python model_trainer.py
+python main.py
+```
+---
 
 ## Output
 
@@ -53,9 +83,11 @@ The script will:
 * Train a Logistic Regression model on the data.
 * Print the accuracy, classification report, and confusion matrix of the model on the test set.
 
-## Documentation
+---
 
-The Python script (`main.py`) includes inline comments explaining the different steps. This `README.md` provides an overview of the project and instructions for running it.
+## Visualizations
+
+---
 
 ## Next Steps (Potential Improvements)
 
@@ -64,21 +96,21 @@ The Python script (`main.py`) includes inline comments explaining the different 
 * Conduct more in-depth EDA.
 * Fine-tune the model hyperparameters.
 
-## License
+---
 
-[Your Choice of License, e.g., MIT License]
-```
+## Power Point Presentation Outline
 
-Now, let's create the `requirements.txt` file.
+Here is an outline of a power point presentation for this project. 
 
-```
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-```
+[Heart Disease Prediction Project](Heart_Disease_Prediction_Presentation.pptx)
 
-These are the Python libraries used in the `main.py` script.
+---
 
-Next, I will provide an outline for a PowerPoint presentation. How does this look so far?
+## Contact
+If you have questions or suggestions, feel free to reach out or open an issue.
+
+---
+
+## Author
+
+Adrian Adewunmi – [GitHub](https://github.com/AAdewunmi)
