@@ -12,12 +12,12 @@ Explore and model the "Heart Disease UCI" dataset to identify key features affec
 
 ## Dataset
 
-The dataset used is the "Heart Disease UCI" dataset, which can be found on Kaggle (you will need to download `heart.csv` and place it in the same directory as the Python script). It contains various features related to patients' health conditions and a binary target variable indicating the presence or absence of heart disease. It is used to to explore data cleaning, visualization, and machine learning for survival prediction.
+The dataset used is the "Heart Disease UCI" dataset, which can be found on Kaggle (you will need to download `heart.csv` and place it in the same directory as the Python script). It contains various features related to patients' health conditions and a binary target variable indicating the presence or absence of heart disease. This dataset has been used to explore data cleaning, visualization, and application of machine learning for survival prediction.
 
 ---
 
 ## Project Structure
-
+```
 heart_disease_project/
 ├── src
     └── data/     : Stores heart disease dataset in CSV file format
@@ -25,15 +25,15 @@ heart_disease_project/
     └── figures/  : Stores images     
     └── models/   : Strores models   
     └── data_loader.py: For data loading and preprocessing.
-    └── eda.py: For Exploratory Data Analysis.
+    └── eda.py: For Exploratory Data Analysis
     └── main.py: The main script to orchestrate the execution.
-    └── model_trainer.py: For model training.
+    └── model_trainer.py: For model training
 ├── .gitignore    : Project documentation
 ├── Heart_Disease_Prediction_Presentation.pptx
 ├── LICENCE
 ├── README.md
 └── requirements.txt : List of Python dependencies  
-
+```
 ---
 
 ## Technologies Used: 
@@ -76,7 +76,7 @@ python main.py
 
 ## Output
 
-The script will:
+The scripts will:
 
 * Print basic information about the dataset.
 * Generate and save several Exploratory Data Analysis (EDA) visualizations as `.png` files (e.g., distribution of the target variable, histograms of numerical features, a scatter plot, and a correlation matrix).
@@ -86,6 +86,37 @@ The script will:
 ---
 
 ## Visualizations
+
+
+- Age Histogram
+
+![](src/figures/eda_histogram_Age.png)
+
+
+- Target Distribution
+  
+![](src/figures/eda_target_distribution.png)
+
+
+- Cholesterol Histogram
+  
+![](src/figures/eda_histogram_Chol.png)
+
+
+- Maximum Heart Rate Histogram
+
+![](src/figures/eda_histogram_MaxHR.png)
+
+
+- Rest Blood Pressure Histogram
+  
+![](src/figures/eda_histogram_RestBP.png)
+
+
+- Cholesterol vs Rest Blood Pressure Scatter Plot
+  
+![](src/figures/eda_scatter_chol_trestbps.png)
+
 
 ---
 
