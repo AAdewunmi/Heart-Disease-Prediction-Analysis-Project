@@ -17,7 +17,7 @@ def perform_eda(df):
     plt.title('Distribution of Heart Disease (0 = No Disease, 1 = Disease)')
     plt.xlabel('Heart Disease')
     plt.ylabel('Count')
-    plt.savefig('eda_target_distribution.png')
+    plt.savefig('/figures/eda_target_distribution.png')
     print("Saved: eda_target_distribution.png")
     plt.close()
 
@@ -29,7 +29,7 @@ def perform_eda(df):
         plt.title(f'Distribution of {col}')
         plt.xlabel(col)
         plt.ylabel('Frequency')
-        plt.savefig(f'eda_histogram_{col}.png')
+        plt.savefig(f'/figures/eda_histogram_{col}.png')
         print(f"Saved: eda_histogram_{col}.png")
         plt.close()
 
@@ -40,7 +40,7 @@ def perform_eda(df):
     plt.xlabel('Resting Blood Pressure (trestbps)')
     plt.ylabel('Cholesterol (chol)')
     plt.legend(title='Heart Disease', labels=['No', 'Yes'])
-    plt.savefig('eda_scatter_chol_trestbps.png')
+    plt.savefig('/figures/eda_scatter_chol_trestbps.png')
     print("Saved: eda_scatter_chol_trestbps.png")
     plt.close()
 
@@ -49,7 +49,7 @@ def perform_eda(df):
     plt.figure(figsize=(12, 10))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
     plt.title('Correlation Matrix of Features')
-    plt.savefig('eda_correlation_matrix.png')
+    plt.savefig('/figures/eda_correlation_matrix.png')
     print("Saved: eda_correlation_matrix.png")
     plt.close()
 
