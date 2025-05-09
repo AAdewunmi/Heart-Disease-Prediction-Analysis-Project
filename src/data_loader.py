@@ -1,37 +1,52 @@
 import pandas as pd
 
 
-def load_and_preprocess_data(csv_file='/data/heart.csv'):
+def load_and_preprocess_data(csv_file='data/heart.csv'):
     """
-    Loads the heart disease dataset from a CSV file and performs basic preprocessing.
+    Loads the heart disease dataset from a CSV file and displays basic 
+    information
+    to help understand the structure and contents of the dataset.
 
     Args:
-        csv_file (str, optional): The path to the CSV file. Defaults to 'heart.csv'.
+        csv_file (str, optional): Path to the CSV file containing the dataset.
+                                  Defaults to 'data/heart.csv'.
 
     Returns:
-        pandas.DataFrame: The preprocessed DataFrame.  Returns None and prints an
-                          error message if the file is not found.
+        pandas.DataFrame: The loaded and raw DataFrame. 
+        Returns None if the file is not found.
+
+    Example:
+        df = load_and_preprocess_data('data/heart.csv')
+        if df is not None:
+            print(df.shape)
     """
     print("Loading and preprocessing data...")
+
+    # Try to read the CSV file into a DataFrame
     try:
         df = pd.read_csv(csv_file)
     except FileNotFoundError:
-        print(f"Error: '{csv_file}' not found.  Please ensure the file is in the same directory.")
+        print(
+            f"Error: '{csv_file}' not found. Please ensure the file exists "
+            f"at the specified path."
+        )
         return None
 
-    print("\nFirst 5 rows of the dataframe:")
+    # Display the first few rows to get a glimpse of the data
+    print("\nFirst 5 rows of the dataset:")
     print(df.head())
-    print("\nInformation about the dataframe:")
+
+    # Print concise summary: column names, data types, and non-null counts
+    print("\nDataFrame information:")
     print(df.info())
-    print("\nSummary statistics:")
+
+    # Show summary statistics for numeric columns
+    print("\nSummary statistics for numeric features:")
     print(df.describe())
 
-    print("\nMissing values:")
+    # Display count of missing values per column
+    print("\nMissing values in each column:")
     print(df.isnull().sum())
-    return df
 
-if __name__ == '__main__':
-    # added to run the file independently
-    df = load_and_preprocess_data()
-    if df is not None:
-        print("Data loaded and preprocessed successfully.")
+    # Return the DataFrame for further processing
+    return df

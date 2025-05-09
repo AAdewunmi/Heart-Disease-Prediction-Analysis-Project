@@ -1,67 +1,76 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
+import os
+
 
 def perform_eda(df):
     """
-    Performs Exploratory Data Analysis (EDA) on the given DataFrame and saves
-    visualizations as PNG files.
+    Performs basic Exploratory Data Analysis (EDA) on the provided DataFrame
+    by:
+    - Visualizing the target variable distribution
+    - Plotting histograms for key numerical features
+    - Displaying a scatter plot between cholesterol and resting blood pressure
+    - Generating a correlation heatmap
+
+    The plots are saved as PNG files in the 'figures/' directory.
 
     Args:
-        df (pandas.DataFrame): The DataFrame to analyze.
+        df (pandas.DataFrame): The DataFrame containing the heart disease
+            dataset.
+
+    Example:
+        df = load_and_preprocess_data('data/heart.csv')
+        if df is not None:
+            perform_eda(df)
     """
+
     print("\nPerforming Exploratory Data Analysis...")
 
-    # Distribution of the target variable
+    # Ensure the output directory exists
+    os.makedirs('figures', exist_ok=True)
+
+    # Plot distribution of the target variable (AHD: presence of heart disease)
     plt.figure(figsize=(6, 4))
-    sns.countplot(x='target', data=df)
+    sns.countplot(x='AHD', data=df)
     plt.title('Distribution of Heart Disease (0 = No Disease, 1 = Disease)')
     plt.xlabel('Heart Disease')
     plt.ylabel('Count')
-    plt.savefig('/figures/eda_target_distribution.png')
-    print("Saved: eda_target_distribution.png")
+    plt.savefig('figures/eda_target_distribution.png')
     plt.close()
 
-    # Histograms of numerical features
-    numerical_features = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
+    # Define selected numerical columns for histogram plots
+    numerical_features = ['Age', 'RestBP', 'Chol', 'MaxHR', 'Oldpeak']
+
+
+    # Plot histogram for each numerical feature
     for col in numerical_features:
         plt.figure(figsize=(8, 6))
         sns.histplot(df[col], kde=True)
         plt.title(f'Distribution of {col}')
         plt.xlabel(col)
         plt.ylabel('Frequency')
-        plt.savefig(f'/figures/eda_histogram_{col}.png')
-        print(f"Saved: eda_histogram_{col}.png")
+        plt.savefig(f'figures/eda_histogram_{col}.png')
         plt.close()
 
-    # Scatter plot of cholesterol vs. blood pressure
+    # Scatter plot showing the relationship between cholesterol and resting BP,
+    # colored by disease presence
     plt.figure(figsize=(8, 6))
-    sns.scatterplot(x='trestbps', y='chol', hue='target', data=df)
+    sns.scatterplot(x='RestBP', y='Chol', hue='AHD', data=df)
     plt.title('Cholesterol vs. Resting Blood Pressure')
     plt.xlabel('Resting Blood Pressure (trestbps)')
     plt.ylabel('Cholesterol (chol)')
     plt.legend(title='Heart Disease', labels=['No', 'Yes'])
-    plt.savefig('/figures/eda_scatter_chol_trestbps.png')
-    print("Saved: eda_scatter_chol_trestbps.png")
+    plt.savefig('figures/eda_scatter_chol_trestbps.png')
     plt.close()
 
-    # Correlation matrix
-    correlation_matrix = df.corr()
+    # Compute correlation matrix for numerical features only
+    numeric_df = df.select_dtypes(include=['number'])
+    correlation_matrix = numeric_df.corr()
+
+    # Plot heatmap of the correlation matrix
     plt.figure(figsize=(12, 10))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
     plt.title('Correlation Matrix of Features')
-    plt.savefig('/figures/eda_correlation_matrix.png')
-    print("Saved: eda_correlation_matrix.png")
+    plt.savefig('figures/eda_correlation_matrix.png')
     plt.close()
-
-if __name__ == '__main__':
-    # added to run the file independently
-    import pandas as pd
-    # Create a sample DataFrame (replace with your actual data loading)
-    data = {'age': [63, 67, 41, 56, 57, 57, 56, 66, 60, 57, 64, 56, 64, 56, 67],
-            'trestbps': [145, 160, 130, 120, 130, 150, 130, 150, 150, 140, 110, 140, 160, 120, 120],
-            'chol': [233, 286, 204, 236, 250, 168, 294, 262, 232, 210, 214, 294, 267, 199, 229],
-            'thalach': [150, 108, 172, 178, 174, 174, 153, 114, 171, 130, 168, 150, 148, 162, 129],
-            'oldpeak': [2.3, 1.5, 1.4, 0.8, 1.6, 0.4, 1.3, 2.6, 0.0, 1.0, 1.2, 0.0, 3.6, 0.0, 2.6],
-            'target': [1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1]}
-    df = pd.DataFrame(data)
-    perform_eda(df)
