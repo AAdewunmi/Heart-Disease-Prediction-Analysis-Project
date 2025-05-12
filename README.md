@@ -74,6 +74,68 @@ python main.py
 ```
 ---
 
+## Workflow
+
+This project follows a structured machine learning workflow to ensure reproducibility, clarity, and modular development. Below are the key steps in the workflow:
+
+### 1. **Data Loading & Preprocessing**
+
+* Load the dataset from `data/heart.csv`.
+* Display basic information, summary statistics, and check for missing values.
+* Handle missing values using `SimpleImputer` for numerical features.
+* Prepare the dataset for analysis.
+
+ Script: [`data_loader.py`](src/data_loader.py)
+ Function: `load_and_preprocess_data()`
+
+---
+
+### 2. **Exploratory Data Analysis (EDA)**
+
+* Visualize the distribution of the target variable (`AHD`).
+* Generate histograms for key numerical features such as `Age`, `Chol`, `MaxHR`, etc.
+* Analyze relationships using scatter plots (e.g., `Chol` vs `RestBP`).
+* Generate a correlation heatmap to identify feature relationships.
+
+Script: [`eda.py`](src/eda.py)
+Function: `perform_eda(df)`
+Outputs: Saved to the `figures/` folder as PNG files
+
+---
+
+### 3. **Model Training & Evaluation**
+
+* Encode categorical features using one-hot encoding.
+* Split the dataset into training and testing subsets.
+* Train a Logistic Regression model using `scikit-learn`.
+* Evaluate model performance using metrics: accuracy, precision, recall, F1-score, and confusion matrix.
+
+Script: [`model_trainer.py`](src/model_trainer.py)
+Function: `train_and_evaluate_model(df)`
+
+---
+
+### 4. **Model Saving**
+
+* Trained model and feature columns are saved using `joblib`.
+* Artifacts stored in the `src/models/` directory for future reuse or deployment.
+
+Output Paths:
+
+* `src/models/logistic_regression_model.pkl`
+* `src/models/model_columns.pkl`
+
+---
+
+### 5. **Project Orchestration**
+
+* The entire workflow (data loading, EDA, model training) is executed via the main driver script.
+
+Script: [`main.py`](src/main.py)
+Entry Point: `main()`
+
+---
+
 ## Output
 
 The scripts will:
@@ -82,41 +144,6 @@ The scripts will:
 * Generate and save several Exploratory Data Analysis (EDA) visualizations as `.png` files (e.g., distribution of the target variable, histograms of numerical features, a scatter plot, and a correlation matrix).
 * Train a Logistic Regression model on the data.
 * Print the accuracy, classification report, and confusion matrix of the model on the test set.
-
----
-
-## Visualizations
-
-
-- Age Histogram
-
-![](src/figures/eda_histogram_Age.png)
-
-
-- Target Distribution
-  
-![](src/figures/eda_target_distribution.png)
-
-
-- Cholesterol Histogram
-  
-![](src/figures/eda_histogram_Chol.png)
-
-
-- Maximum Heart Rate Histogram
-
-![](src/figures/eda_histogram_MaxHR.png)
-
-
-- Rest Blood Pressure Histogram
-  
-![](src/figures/eda_histogram_RestBP.png)
-
-
-- Cholesterol vs Rest Blood Pressure Scatter Plot
-  
-![](src/figures/eda_scatter_chol_trestbps.png)
-
 
 ---
 
